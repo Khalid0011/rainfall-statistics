@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 public class RainfallStatsTest {
 	private final RainfallStats stats = new RainfallStats();
-	
+
 	/*
 	 * The count should initially be 0.
 	 */
@@ -11,28 +11,30 @@ public class RainfallStatsTest {
 	public void testInitialState() {
 		assertEquals(0, stats.getCount());
 	}
-	
+
 	/*
-	 * If no measurements have been added, the getMean method
-	 * should throw an IllegalStateException.
+	 * If no measurements have been added, the getMean method should throw an
+	 * IllegalStateException.
 	 */
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testMeanOfNoMeasurements() {
 		// TODO: write unit test
+		stats.getMean();
 	}
-	
+
 	/*
-	 * If no measurements have been added, the getMax method
-	 * should throw an IllegalStateException.
+	 * If no measurements have been added, the getMax method should throw an
+	 * IllegalStateException.
 	 */
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testMaxOfNoMeasurements() {
 		// TODO: write unit test
+		stats.getMax();
 	}
-	
+
 	/*
-	 * If one measurement is added, the count should be one,
-	 * and the mean and max should equal that measurement.
+	 * If one measurement is added, the count should be one, and the mean and max
+	 * should equal that measurement.
 	 */
 	@Test
 	public void testAddMeasurement() throws InvalidRainfallException {
@@ -41,16 +43,17 @@ public class RainfallStatsTest {
 		assertEquals(4.0, stats.getMean(), 0);
 		assertEquals(4.0, stats.getMax(), 0);
 	}
-	
+
 	/*
-	 * The addMeasurement method should throw an InvalidRainfallException
-	 * if the measurement is negative.
+	 * The addMeasurement method should throw an InvalidRainfallException if the
+	 * measurement is negative.
 	 */
-	@Test
-	public void testAddInvalidMeasurement() {
+	@Test(expected = InvalidRainfallException.class)
+	public void testAddInvalidMeasurement() throws InvalidRainfallException {
 		// TODO: write unit test
+		stats.addMeasurement(-10);
 	}
-	
+
 	/*
 	 * After three measurements are added, the count should be 3.
 	 */
@@ -61,7 +64,7 @@ public class RainfallStatsTest {
 		stats.addMeasurement(4.0);
 		assertEquals(3, stats.getCount());
 	}
-	
+
 	/*
 	 * Test the mean of three measurements.
 	 */
@@ -72,7 +75,7 @@ public class RainfallStatsTest {
 		stats.addMeasurement(4.0);
 		assertEquals(4.0, stats.getMean(), 0);
 	}
-	
+
 	/*
 	 * Test the max of three measurements.
 	 */
